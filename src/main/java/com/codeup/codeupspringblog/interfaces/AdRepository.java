@@ -1,8 +1,19 @@
 package com.codeup.codeupspringblog.interfaces;
 
-public interface AdRepository extends JpaRepository<Ad,Long>{
-    Ad findByTitle(String title);
-    Ad findFirstByTitle(String title);
+import com.codeup.codeupspringblog.Ad;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
-    Object findAll();
+import java.util.List;
+
+public interface AdRepository extends JpaRepository<Ad,Long> {
+
+    @Query("from Ad a where a.id like ?1")
+    Ad getAdById(long id);
+
+    @Query("from Ad a where a.title like %:term%")
+    List<Ad> searchByTitleLike(@Param("term") String term);
+
+
 }
