@@ -1,8 +1,9 @@
-package com.codeup.codeupspringblog;
+package com.codeup.codeupspringblog.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -25,5 +26,11 @@ public class PostController {
         return "Viewing the creation form";
 
     }
+    @PostMapping("/posts/create")
+    @ResponseBody
+    public String createPost1(){
+        return "You're seeing the form";
+    }
+
 
 }
