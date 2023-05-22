@@ -2,14 +2,17 @@ package com.codeup.codeupspringblog.models;
 
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Cascade;
+
+import java.util.List;
 
 @Entity
-@Table(name = "user")
+@Table(name = "User")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     @Column(nullable = false, length = 255)
     public String username;
@@ -21,16 +24,15 @@ public class User {
     @Column(nullable = false, length = 255)
     private String password;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<Post> posts;
 
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
-    public int getId(int id){
-        return id;
+    public long getId(long id){
+        return  id;
     }
 
     public String getUsername(String username){

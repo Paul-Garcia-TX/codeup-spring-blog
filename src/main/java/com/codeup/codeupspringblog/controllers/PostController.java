@@ -1,5 +1,6 @@
 package com.codeup.codeupspringblog.controllers;
 
+import com.codeup.codeupspringblog.interfaces.PostRepository;
 import com.codeup.codeupspringblog.models.Post;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,10 +13,16 @@ import java.util.List;
 @Controller
 public class PostController {
 
+
+    private final PostRepository postDao;
+
+    public PostController(PostRepository postDao){
+        this.postDao = postDao;
+    }
     @GetMapping("/posts")
     public String getPosts(Model model) {
         // Replace with your logic to retrieve posts from the database
-        List<Post> posts = yourMethodToRetrievePosts();
+        List<Post> posts = postDao.findAll();
         model.addAttribute("posts", posts);
         return "index";
     }
@@ -23,7 +30,7 @@ public class PostController {
     @GetMapping("/posts/{id}")
     public String getPostById(@PathVariable long id, Model model) {
         // Replace with your logic to retrieve a specific post from the database
-        Post post = yourMethodToRetrievePostById(id);
+        Post post = postDao.getReferenceById(id);
         model.addAttribute("post", post);
         return "show";
     }
@@ -39,15 +46,7 @@ public class PostController {
         return "redirect:/index";
     }
 
-    private List<Post> yourMethodToRetrievePosts() {
 
-        return null;
-    }
-
-    private Post yourMethodToRetrievePostById(long id) {
-
-        return null;
-    }
     @GetMapping("/rick-roll")
     public String rickRoll() {
         // redirecting to an absolute url

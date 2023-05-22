@@ -7,6 +7,22 @@ import jakarta.persistence.*;
 @Table(name="Post")
 public class Post {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    @Column(nullable = false,length = 255)
+    private String title;
+
+    @Column(nullable = false)
+    private String body;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+
+
     public long getId() {
         return id;
     }
@@ -31,18 +47,7 @@ public class Post {
         this.body = body;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
 
-    @Column(nullable = false,length = 255)
-    private String title;
-
-    @Column(nullable = false)
-    private String body;
-
-    @OneToOne
-    private User owner;
 
 
 }
