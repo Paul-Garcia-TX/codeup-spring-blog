@@ -6,29 +6,25 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
 @Controller
 public class PostController {
+
     @GetMapping("/posts")
     public String getPosts(Model model) {
-        // Add model attributes for posts data
-        // Example:
-        List<Post> posts = yourMethodToRetrievePosts(); // Replace with your logic to retrieve posts from the database
+        // Replace with your logic to retrieve posts from the database
+        List<Post> posts = yourMethodToRetrievePosts();
         model.addAttribute("posts", posts);
-
         return "index";
     }
 
     @GetMapping("/posts/{id}")
-    public String getPostById(@PathVariable int id, Model model) {
-        // Add model attributes for the specific post data
-        // Example:
-        Post post = yourMethodToRetrievePostById(id); // Replace with your logic to retrieve a specific post from the database
+    public String getPostById(@PathVariable long id, Model model) {
+        // Replace with your logic to retrieve a specific post from the database
+        Post post = yourMethodToRetrievePostById(id);
         model.addAttribute("post", post);
-
         return "show";
     }
 
@@ -38,22 +34,31 @@ public class PostController {
     }
 
     @PostMapping("/posts/create")
-    @ResponseBody
     public String createPost1() {
-        return "You're seeing the form";
+
+        return "redirect:/index";
     }
 
     private List<Post> yourMethodToRetrievePosts() {
-        // Implement your logic to retrieve posts from the database
-        // Return a list of Post objects
-        // This is just a placeholder implementation
+
         return null;
     }
 
-    private Post yourMethodToRetrievePostById(int id) {
-        // Implement your logic to retrieve a specific post from the database based on the given ID
-        // Return a Post object
-        // This is just a placeholder implementation
+    private Post yourMethodToRetrievePostById(long id) {
+
         return null;
     }
+    @GetMapping("/rick-roll")
+    public String rickRoll() {
+        // redirecting to an absolute url
+        return "redirect:https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+    }
+    @GetMapping("/redirect-me")
+    public String redirect() {
+        // a relative (to the base domain) redirect, usually you will use this
+        // version
+        // Will redirect the users to `/about`
+        return "redirect:/about";
+    }
+
 }
