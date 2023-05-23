@@ -1,7 +1,12 @@
 package com.codeup.codeupspringblog.models;
 
 
+import com.codeup.codeupspringblog.services.EmailService;
 import jakarta.persistence.*;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Entity
 @Table(name="Post")
@@ -46,6 +51,9 @@ public class Post {
     public void setBody(String body) {
         this.body = body;
     }
+
+
+
 
 
 

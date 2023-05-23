@@ -11,7 +11,14 @@
 
   <h1>See blog posts</h1>
 
-    <button type="button" class="btn btn-primary">See Posts</button>
+    <ul>
+        <li th:each="posts : ${posts}">
+
+            <h2 th:text="${posts.title}"></h2>
+            <p th:text="${posts.body}"></p>
+<!--            <p th:text="${posts.user}"></p>-->
+        </li>
+    </ul>
 
 </div>
 

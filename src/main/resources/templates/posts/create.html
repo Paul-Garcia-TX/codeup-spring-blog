@@ -11,15 +11,16 @@
 
 <div class="container">
   <h1>Write your blog below!</h1>
-  <form action="/posts/create" method="post">
+  <form action="/posts/create" method="POST" th:action="@{/posts}" th:object="${Post}">
     <div class="mb-3">
       <label for="BlogTitle" class="form-label">Title</label>
-      <input type="text" class="form-control" id="BlogTitle" name="title" placeholder="My Blog Post">
+      <input type="text" class="form-control" id="BlogTitle" name="title" placeholder="My Blog Post" th:field="*{posts.title}">
     </div>
 
     <div class="mb-3">
       <label for="BlogTextArea" class="form-label">Blog Text</label>
-      <textarea class="form-control" id="BlogTextArea" name="content" rows="3"></textarea>
+      <textarea class="form-control" id="BlogTextArea" name="content" rows="3" th:field="*{post.body}"></textarea>
+      <input type="hidden" th:field="*{post.id}">
     </div>
     <button type="submit" class="btn btn-primary">Submit!</button>
   </form>
