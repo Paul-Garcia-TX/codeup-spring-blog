@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,19 +12,22 @@
 
 <div class="container">
   <h1>Write your blog below!</h1>
-  <form action="/posts/create" method="POST" th:action="@{/posts}" th:object="${Post}">
+  <form  th:method="post" th:action="@{/posts/create}" th:object="${post}">
     <div class="mb-3">
       <label for="BlogTitle" class="form-label">Title</label>
-      <input type="text" class="form-control" id="BlogTitle" name="title" placeholder="My Blog Post" th:field="*{posts.title}">
+      <input type="text" class="form-control" id="BlogTitle" name="title" placeholder="My Blog Post" th:field="*{title}">
     </div>
 
     <div class="mb-3">
       <label for="BlogTextArea" class="form-label">Blog Text</label>
-      <textarea class="form-control" id="BlogTextArea" name="content" rows="3" th:field="*{post.body}"></textarea>
-      <input type="hidden" th:field="*{post.id}">
+      <textarea class="form-control" id="BlogTextArea" name="content" rows="3" th:field="*{body}"></textarea>
+      <input type="hidden" th:field="*{id}">
     </div>
     <button type="submit" class="btn btn-primary">Submit!</button>
   </form>
+
+
+
 </div>
 
 

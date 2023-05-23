@@ -21,7 +21,7 @@ public class User {
     private String email;
 
 
-    @Column(nullable = false, length = 255)
+    @Column(nullable = false, length = 500)
     private String password;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
@@ -31,9 +31,10 @@ public class User {
     public void setId(long id) {
         this.id = id;
     }
-    public long getId(long id){
-        return  id;
+    public long getId() {
+        return id;
     }
+
 
     public String getUsername(String username){
         return username;
@@ -57,4 +58,6 @@ public class User {
     protected void setPassword(String password){
         this.password = password;
     }
+
+
 }

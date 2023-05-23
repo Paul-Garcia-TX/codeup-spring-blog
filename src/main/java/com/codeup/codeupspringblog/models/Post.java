@@ -1,12 +1,7 @@
 package com.codeup.codeupspringblog.models;
 
 
-import com.codeup.codeupspringblog.services.EmailService;
 import jakarta.persistence.*;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Entity
 @Table(name="Post")
@@ -21,6 +16,7 @@ public class Post {
 
     @Column(nullable = false)
     private String body;
+
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -53,10 +49,13 @@ public class Post {
     }
 
 
+    public User getUser() {
+        return user;
+    }
 
-
-
-
+    public void setUser(User user) {
+        this.user = user;
+    }
 
 }
 
