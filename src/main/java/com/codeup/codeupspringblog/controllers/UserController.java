@@ -33,6 +33,7 @@ public class UserController {
         User newUser = new User(user); // Use the constructor that takes a User object
         newUser.setPassword(hash);
         userDao.save(newUser);
+        System.out.println(newUser.getPassword() + " " + newUser.getUsername());
         return "redirect:/login";
     }
 
