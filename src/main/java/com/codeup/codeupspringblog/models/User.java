@@ -2,14 +2,16 @@ package com.codeup.codeupspringblog.models;
 
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.Cascade;
 
 import java.util.List;
 
 @Entity
 @Table(name = "User")
-public class User {
+public class User  {
 
+    public User(){
+
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -52,12 +54,17 @@ public class User {
     }
 
 
-    protected String getPassword(String password){
+    public String getPassword(){
         return password;
     }
-    protected void setPassword(String password){
+    public void setPassword(String password){
         this.password = password;
     }
 
-
+    public User(User copy) {
+        id = copy.id; // This line is SUPER important! Many things won't work if it's absent
+        email = copy.email;
+        username = copy.username;
+        password = copy.password;
+    }
 }
